@@ -15,14 +15,36 @@ class Consumer(models.Model):
 
 
 # TODO: Create the model DiscountRules below
-"""Fields:
--> Consumer type  
--> Consumption range
--> Cover value
--> Discount value
-The first three fields should be a select with the values provided in the table
-defined in the readme of the repository. Discount should be numerical
-"""
+class DiscountRules(models.Model):
+    # Tipos de Consumidor (Consumer Type)
+    CONSUMER_TYPES = [
+        ('Residencial', 'Residencial'),
+        ('Comercial', 'Comercial'),
+        ('Industrial', 'Industrial'),
+    ]
+    
+    # Faixa de Consumo (Consumption Range)
+    CONSUMPTION_RANGES = [
+        ('Baixo', 'Baixo'),
+        ('Médio', 'Médio'),
+        ('Alto', 'Alto'),
+    ]
+    
+    # Valor de Cobertura (Cover Value)
+    COVER_VALUES = [
+        ('Baixo', 'Baixo'),
+        ('Médio', 'Médio'),
+        ('Alto', 'Alto'),
+    ]
+    
+    # Campos do Modelo
+    consumer_type = models.CharField(max_length=20, choices=CONSUMER_TYPES)
+    consumption_range = models.CharField(max_length=10, choices=CONSUMPTION_RANGES)
+    cover_value = models.CharField(max_length=10, choices=COVER_VALUES)
+    discount_value = models.FloatField()
+
+    def __str__(self):
+        return f"{self.consumer_type} - {self.consumption_range} - {self.cover_value}"
 
 # TODO: You must populate the consumer table with the data provided in the file consumers.xlsx
 #  and associate each one with the correct discount rule

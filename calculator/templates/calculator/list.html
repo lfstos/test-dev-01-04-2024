@@ -1,18 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Title</title>
-</head>
-<body>
-<!--
-TODO: You must display the data sent to the template in a table with the follow headers
- - Nome, Documento, Consumo, Tipo, Cobertura, Desconto, Economia
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Documento</th>
+          <th>Consumo</th>
+          <th>Tipo</th>
+          <th>Cobertura</th>
+          <th>Desconto</th>
+          <th>Economia</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for consumer in object_list %}
+          <tr>
+            <td>{{ consumer.name }}</td>
+            <td>{{ consumer.document }}</td>
+            <td>{{ consumer.consumption }}</td>
+            <td>{{ consumer.type }}</td>
+            <td>{{ consumer.coverage }}</td>
+            <td>{{ consumer.discount }}</td>
+            <td>{{ consumer.economy }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
 
-TODO: You must provide 2 selects to filter the rows based in:
- 1) consumer type
- 2) consumption range
- - You must create the filter functionality in the front-end using JS
--->
-</body>
+    <label for="consumer-type-filter">Tipo de Consumidor:</label>
+    <select id="consumer-type-filter">
+      <option value="">Todos</option>
+      <option value="Residencial">Residencial</option>
+      <option value="Comercial">Comercial</option>
+      <option value="Industrial">Industrial</option>
+    </select>
+
+    <label for="consumption-range-filter">Faixa de Consumo:</label>
+    <select id="consumption-range-filter">
+      <option value="">Todos</option>
+      <option value="Baixo">Baixo</option>
+      <option value="Médio">Médio</option>
+      <option value="Alto">Alto</option>
+    </select>
+    -->
+  </body>
 </html>
